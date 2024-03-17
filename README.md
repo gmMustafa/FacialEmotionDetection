@@ -18,26 +18,51 @@ Understanding and analyzing human emotions in real time can significantly impact
 
 The project aims to bridge the gap between human emotions and technology, providing insights into emotional dynamics and enhancing interactions in digital spaces. It stands as a testament to the potential applications of machine learning in real-time emotion detection and interactive visualization.
 
+Here's the revised Installation and Setup section with an added step for setting up a virtual environment:
+
 ## Installation and Setup
 
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/gmMustafa/facial_emotion_detection/
    ```
+
 2. **Download the architecture and model zip file** from the following URL, and extract it into the root folder of the cloned repository:
    ```plaintext
    https://tinyurl.com/439nt2th
    ```
-3. **Install dependencies:**
+
+3. **Set up a Python virtual environment:**
+   Navigate to your project directory and create a virtual environment. Activate it before proceeding to the next steps.
+   - **Create the virtual environment:**
+     ```bash
+     python -m venv venv
+     ```
+   - **Activate the virtual environment:**
+     - On **Windows**, run:
+       ```cmd
+       venv\Scripts\activate
+       ```
+     - On **macOS/Linux**, run:
+       ```bash
+       source venv/bin/activate
+       ```
+
+4. **Install dependencies:**
+   With the virtual environment activated, install the required packages:
    ```bash
    pip install -r requirements.txt
    ```
-4. **Launch the application:**
+
+5. **Launch the application:**
+   Ensure the virtual environment is still activated, then start the Flask application:
    ```bash
    python app.py
    ```
-5. **Access the application** by navigating to `http://127.0.0.1:5000/` in your web browser.
 
+6. **Access the application** by navigating to `http://127.0.0.1:5000/` in your web browser.
+
+Remember to deactivate your virtual environment when you're finished working on the project by running `deactivate` in your terminal.
    
 ## Usage Guide
 
