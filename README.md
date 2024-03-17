@@ -107,4 +107,7 @@ This project is associated with the "Interactive Visualization Project" under th
 
 For a detailed exploration of the project's methodology, evaluation, and insights, refer to the presentation slides at https://tinyurl.com/4ppxptxp.
 
+<img src="https://github.com/gmMustafa/facial_emotion_detection/assets/26876754/d94d54c8-a95d-4bd0-935a-6a714e6bb909" alt="Friedrich-Alexander-Universität Erlangen-Nürnberg" width="250" height="80">
+
+
 ---
