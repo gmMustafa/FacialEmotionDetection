@@ -1,0 +1,13 @@
+Session ID: ltmgsgcn_kblbxpkh5g
+Start Time: 2024-03-11T04:49:51.047Z
+End Time: 2024-03-11T04:50:08.121Z
+Session Time: 17.074 seconds
+Selected Model: Chehra
+
+Average Emotions(%):
+Anger: 14.24
+Fear: 3.43
+Happiness: 38.13
+Neutrality: 22.66
+Sadness: 14.5
+Surprise: 7.04

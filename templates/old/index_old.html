@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emotion Detection</title>
+  </head>
+  <body>
+    <h1>Emotion Detection</h1>
+    <div>
+      <img id="video_feed" width="640" height="480" />
+    </div>
+    <div id="emotion_info">
+      <h2>Emotion Information</h2>
+      <ul>
+        <li>Anger: {{ emotion_info['anger'] }}%</li>
+        <li>Contempt: {{ emotion_info['contempt'] }}%</li>
+        <li>Disgust: {{ emotion_info['disgust'] }}%</li>
+        <li>Fear: {{ emotion_info['fear'] }}%</li>
+        <li>Happiness: {{ emotion_info['happiness'] }}%</li>
+        <li>Neutrality: {{ emotion_info['neutrality'] }}%</li>
+        <li>Sadness: {{ emotion_info['sadness'] }}%</li>
+        <li>Surprise: {{ emotion_info['surprise'] }}%</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Emotion Analysis</h2>
+      <canvas id="emotionChart" width="400" height="200"></canvas>
+    </div>
+    
+    <div>
+      <button onclick="startDetection()">Start Detection</button>
+      <button onclick="stopDetection()">Stop Detection</button>
+      <button onclick="getSummary()">Get Summary</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script>
+        var ctx = document.getElementById('emotionChart').getContext('2d');
+        var labels = ['Anger', 'Contempt', 'Disgust', 'Fear', 'Happiness', 'Neutrality', 'Sadness', 'Surprise'];
+        var values = [0, 0, 0, 0, 0, 0, 0, 0];
+
+        var emotionChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Emotion Analysis',
+                    data: values,
+                    backgroundColor: [
+                        'rgba(255, 0, 0, 0.5)',
+                        'rgba(128, 128, 128, 0.5)',
+                        'rgba(0, 128, 0, 0.5)',
+                        'rgba(0, 0, 255, 0.5)',
+                        'rgba(255, 255, 0, 0.5)',
+                        'rgba(192, 192, 192, 0.5)',
+                        'rgba(128, 0, 128, 0.5)',
+                        'rgba(255, 165, 0, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(128, 128, 128, 1)',
+                        'rgba(0, 128, 0, 1)',
+                        'rgba(0, 0, 255, 1)',
+                        'rgba(255, 255, 0, 1)',
+                        'rgba(192, 192, 192, 1)',
+                        'rgba(128, 0, 128, 1)',
+                        'rgba(255, 165, 0, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        var source = new EventSource('/emotion_analysis');
+        source.onmessage = function (event) {
+            var data = JSON.parse(event.data);
+            updateChart(data);
+        };
+
+        function updateChart(data) {
+            for (var i = 0; i < labels.length; i++) {
+                values[i] = data.values[i];
+            }
+            emotionChart.update();
+        }
+
+        function startDetection() {
+            fetch('/start_detection');
+        }
+
+        function stopDetection() {
+            fetch('/stop_detection');
+        }
+
+        function getSummary() {
+            fetch('/get_summary')
+                .then(response => response.text())
+                .then(data => alert(data));
+        }
+    </script> -->
+    <script>
+        var source = new EventSource("/video_feed");
+        source.onopen = function (event) {
+          console.log("Connection opened:", event);
+        };
+
+        source.onerror = function (event) {
+          console.error("Error:", event);
+        };
+        source.onmessage = function (event) {
+          try {
+            console.log("Data: ",event.data)
+            var data = JSON.parse(event.data);
+
+            if (data.frame) {
+              // Update frame
+              document
+                .getElementById("video_feed")
+                .setAttribute("src", "data:image/jpeg;base64," + data.frame);
+            }
+
+            if (data.emotion_info) {
+              // Handle emotion information
+              updateChart(data.emotion_info);
+            }
+          } catch (error) {
+            console.log("Error: ", error);
+          }
+        };
+
+      var ctx = document.getElementById("emotionChart").getContext("2d");
+      var labels = [
+        "Anger",
+        "Contempt",
+        "Disgust",
+        "Fear",
+        "Happiness",
+        "Neutrality",
+        "Sadness",
+        "Surprise",
+      ];
+      var values = [0, 0, 0, 0, 0, 0, 0, 0];
+
+      var emotionChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Emotion Analysis",
+              data: values,
+              backgroundColor: [
+                "rgba(255, 0, 0, 0.5)",
+                "rgba(128, 128, 128, 0.5)",
+                "rgba(0, 128, 0, 0.5)",
+                "rgba(0, 0, 255, 0.5)",
+                "rgba(255, 255, 0, 0.5)",
+                "rgba(192, 192, 192, 0.5)",
+                "rgba(128, 0, 128, 0.5)",
+                "rgba(255, 165, 0, 0.5)",
+              ],
+              borderColor: [
+                "rgba(255, 0, 0, 1)",
+                "rgba(128, 128, 128, 1)",
+                "rgba(0, 128, 0, 1)",
+                "rgba(0, 0, 255, 1)",
+                "rgba(255, 255, 0, 1)",
+                "rgba(192, 192, 192, 1)",
+                "rgba(128, 0, 128, 1)",
+                "rgba(255, 165, 0, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+            },
+          },
+        },
+      });
+
+      function updateChart(emotion_info) {
+        console.log("emotion_info: ", emotion_info);
+        for (var i = 0; i < labels.length; i++) {
+          values[i] = emotion_info[labels[i]];
+        }
+        emotionChart.update();
+      }
+
+        function startDetection() {
+          fetch("/start_detection");
+        }
+    //   function startDetection() {
+    //     // Start fetching data at intervals
+    //     setInterval(() => {
+    //       fetch("/video_feed")
+    //         .then((response) => {
+    //           console.log("response: ", response);
+    //           response.json();
+    //         })
+    //         .then((data) => {
+    //           console.log("data: ", data);
+    //           // Handle frame and emotion information
+    //           if (data.frame) {
+    //             document
+    //               .getElementById("video_feed")
+    //               .setAttribute("src", "data:image/jpeg;base64," + data.frame);
+    //           }
+
+    //           if (data.emotion_info) {
+    //             updateChart(data.emotion_info);
+    //           }
+    //         })
+    //         .catch((error) => console.error("Error fetching data:", error));
+    //     }, 1000); // Adjust the interval as needed
+    //   }
+
+      function stopDetection() {
+        fetch("/stop_detection");
+      }
+
+      function getSummary() {
+        fetch("/get_summary")
+          .then((response) => response.text())
+          .then((data) => alert(data));
+      }
+    </script>
+  </body>
+</html>

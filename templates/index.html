@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+</html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+      <title>Face Recognition System</title>
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&family=Work+Sans:ital,wght@0,100;0,400;0,500;1,100&display=swap" rel="stylesheet">
+
+   </head>
+   
+   <body >
+    
+    <nav class="navbar">
+      <div class="navbar-brand">
+          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="navbar-logo">
+          <span class="navbar-title">Interactive Visualization Project - Facial Emotion Recognition</span>
+      </div>
+      <div class="navbar-links">
+          <a href="." class="nav-link">Home</a>
+          <a href="/about" class="nav-link">About Us</a>
+          <a href="/api_docs" class="nav-link">API Docs</a>
+          
+          <!-- <a href="#" class="nav-link">Contact</a> -->
+      </div>
+  </nav>
+
+
+        <div class="button-setup">
+         
+          <div id="buttonsCameras">
+            <button id="cameraButton" class="button" onclick="handleModelChange()">
+              Open Camera
+              </button>
+    
+              <button
+                 id="stopCameraButton"
+                 class="button"
+                 onclick="stopCamera(true)"
+                 style="display: none"
+                 >
+              Stop Camera
+              </button>
+          </div>
+          
+          <div id="modelSetup">
+            <label for="modelSelect">Select Model: </label>
+            <select id="modelSelect" onchange="handleModelChange()">
+              <option value="">--Choose a model--</option>
+              <option value="CNN">CNN</option>
+              <option value="Chehra">Chehra</option>
+              <option value="Yollo">Deep Neural Network</option>
+            </select>
+          </div>
+
+          <div class="switch-container" id="switch_ui">
+            <label class="switch">
+                <input type="checkbox" id="generateReportSwitch">
+                <span class="slider round"></span>
+            </label>
+            <label for="generateReportSwitch" class="switch-label">Generate Report</label>
+        </div>
+          
+        </div>
+
+         <div id="main_container" class="container" style="display: none;">
+          <video id="cameraStream" autoplay playsinline></video>
+          <img id="processedStream" alt="Processed Frame" />
+         
+          <div> 
+            <div id="emotion_info">
+              <h2>Emotion Information</h2>
+              <label>
+                <span><b>Session Id# </b> <span id="sessionID">None</span></span>
+            </label>
+              <ul>
+                <!-- <li>Anger: 20%</li>
+                <li>Contempt: 10%</li>
+                <li>Disgust: 10%</li>
+                <li>Fear: 10%</li>
+                <li>Happiness: 10%</li>
+                <li>Neutrality: 10%</li>
+                <li>Sadness: 10%</li>
+                <li>Surprise: 10%</li> -->
+              </ul>
+            </div>
+
+            <div id="emotion_info2">
+              <h2>Visual Representaion</h2>
+              <canvas id="emotionChart" width="400" height="200"></canvas>
+            </div>
+
+          </div>
+       </div>
+
+       <div id="placeholder-container" >
+       
+       </div>
+
+
+      <div id="toastContainer"></div>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+   </body>
+</html>

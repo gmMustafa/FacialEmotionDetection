@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Face Recognition System</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 110vh;
+        margin: 0;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 4fr 4fr; /* Two columns with equal width */
+        gap: 10px; /* Add space between video and processed frames */
+        background-color: #fff;
+        padding: 100px;
+        margin-top: 50px;
+        border-radius: 80px;
+        box-shadow: 4 2px 4px rgba(0, 0, 0, 0.1);
+        width: 1500px;
+        /* height: 200px; */
+      }
+
+      h1 {
+        /* margin-bottom: 20px; */
+        color: #ffa500; /* Orange color */
+        font-size: 80px;
+
+        justify-items: center;
+        align-items: center;
+      }
+
+      .butn-c {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
+
+      .button {
+        padding: 18px 35px;
+        border-radius: 22px;
+        color: white;
+        border-radius: 50px;
+        background-color: dodgerblue;
+        font-weight: bold;
+        font-size: 23px;
+        margin: 0 3px;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: #ffa500;
+      }
+
+      #cameraStream {
+        display: none;
+        margin-left: -60px;
+        width: 800px;
+        border-radius: 30px;
+      }
+
+      #processedStream {
+        display: none;
+        width: 800px;
+        border-radius: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Face Recognition-Based Attendance System</h1>
+
+    <div class="butn-c">
+      <button id="cameraButton" class="button" onclick="openCamera()">
+        Open Camera
+      </button>
+      <button
+        id="stopCameraButton"
+        class="button"
+        onclick="stopCamera()"
+        style="display: none"
+      >
+        Stop Camera
+      </button>
+      <h2>Choose Model</h2>
+      <label>
+        <input
+          type="radio"
+          name="group1"
+          value="CNN"
+          onchange="handleRadioChange('group1', this)"
+        />
+        CNN
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="group1"
+          value="Chehra"
+          onchange="handleRadioChange('group1', this)"
+        />Chehra
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="group1"
+          value="Yollo"
+          onchange="handleRadioChange('group1', this)"
+        />
+        Yollo
+      </label>
+      <!-- <button id="downloadAttendanceButton" class="button" onclick="downloadAttendance()">
+        Download Attendance
+    </button> -->
+    </div>
+
+    <div class="container">
+      <video id="cameraStream" autoplay playsinline></video>
+      <img id="processedStream" alt="Processed Frame" />
+    </div>
+
+    <script>
+      const cameraButton = document.getElementById("cameraButton");
+      const stopCameraButton = document.getElementById("stopCameraButton");
+      // const downloadAttendanceButton = document.getElementById('downloadAttendanceButton');
+      const cameraStream = document.getElementById("cameraStream");
+      const processedStream = document.getElementById("processedStream");
+      let selectedModel = "";
+      let stream;
+
+
+
+      function handleRadioChange(groupName, selectedRadio) {
+        const selectedValue = selectedRadio.value;
+        stopCamera();
+        // Stop processing frames for the previous model
+
+        // Clear previous stream and canvas
+        processedStream.src = "";
+
+        // Add your logic here based on the selected radio button
+        if (selectedValue === "CNN") {
+          console.log("CNN");
+          selectedModel = "CNN";
+
+        } else if (selectedValue === "Chehra") {
+          console.log("Chehra");
+          selectedModel = "Chehra";
+          
+        } else if (selectedValue === "Yollo") {
+          selectedModel = "Yollo";
+          // Handle Yollo model setup here
+        }
+      }
+
+      function openCamera() {
+        cameraButton.style.display = "none";
+        stopCameraButton.style.display = "block";
+        cameraStream.style.display = "block";
+        processedStream.style.display = "block";
+
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then((mediaStream) => {
+            stream = mediaStream;
+            cameraStream.srcObject = stream;
+          })
+          .catch((error) =>
+            console.error("Error accessing the camera:", error)
+          );
+
+        // Start sending and displaying processed frames
+        if (selectedModel === "CNN") {
+          startSendingCNNFrames();
+        } else if (selectedModel === "Chehra") {
+          startSendingChehraFrames();
+        }
+        else if (selectedModel === "Yollo") {
+          startSendingYolloFrames();
+        }
+        // startSendingFrames();
+      }
+
+      function stopCamera() {
+        if (stream) {
+          stream.getTracks().forEach((track) => track.stop());
+        }
+        stream = null;
+        stopCameraButton.style.display = "none";
+        cameraButton.style.display = "block";
+        cameraStream.style.display = "none";
+        processedStream.style.display = "none";
+        cameraStream.srcObject = null;
+        processedStream.src = ""; // Clear the processed image
+      }
+
+      function startSendingChehraFrames() {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = cameraStream.videoWidth;
+        canvas.height = cameraStream.videoHeight;
+
+        ctx.drawImage(cameraStream, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(
+          (blob) => {
+            const formData = new FormData();
+            formData.append("frame", blob);
+
+            fetch("/process_chehra_frame", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => response.blob())
+              .then((processedBlob) => {
+                const processedUrl = URL.createObjectURL(processedBlob);
+                processedStream.src = processedUrl;
+
+                // Recursively send and display processed frames
+                if(selectedModel === "Chehra"){
+                  startSendingChehraFrames();
+                }
+               });
+          },
+          "image/jpeg",
+          0.9
+        );
+      }
+
+      function startSendingCNNFrames() {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = cameraStream.videoWidth;
+        canvas.height = cameraStream.videoHeight;
+
+        ctx.drawImage(cameraStream, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(
+          (blob) => {
+            const formData = new FormData();
+            formData.append("frame", blob);
+
+            fetch("/process_CNN_frame", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => response.blob())
+              .then((processedBlob) => {
+                const processedUrl = URL.createObjectURL(processedBlob);
+                processedStream.src = processedUrl;
+
+                // Recursively send and display processed frames
+                if(selectedModel==="CNN"){
+                  startSendingCNNFrames();
+                }
+              });
+          },
+          "image/jpeg",
+          0.9
+        );
+      }
+
+
+      function startSendingYolloFrames() {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = cameraStream.videoWidth;
+        canvas.height = cameraStream.videoHeight;
+
+        ctx.drawImage(cameraStream, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(
+          (blob) => {
+            const formData = new FormData();
+            formData.append("frame", blob);
+
+            fetch("/process_yollo_frame", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => response.blob())
+              .then((processedBlob) => {
+                const processedUrl = URL.createObjectURL(processedBlob);
+                processedStream.src = processedUrl;
+
+                // Recursively send and display processed frames
+                if(selectedModel==="Yollo"){
+                  startSendingYolloFrames();
+                }
+               });
+          },
+          "image/jpeg",
+          0.9
+        );
+      }
+
+      // function downloadAttendance() {
+      //     fetch('/download_attendance')
+      //         .then(response => response.blob())
+      //         .then(blob => {
+      //             const url = window.URL.createObjectURL(blob);
+      //             const a = document.createElement('a');
+      //             a.href = url;
+      //             a.download = 'attendance.csv';
+      //             document.body.appendChild(a);
+      //             a.click();
+      //             document.body.removeChild(a);
+      //             window.URL.revokeObjectURL(url);
+      //         })
+      //         .catch(error => console.error('Error downloading attendance:', error));
+      // }
+    </script>
+  </body>
+</html>

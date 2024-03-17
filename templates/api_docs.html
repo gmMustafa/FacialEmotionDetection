@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .api-endpoint {
+            background-color: #e7e7e7;
+            border-left: 5px solid #5cb85c;
+            margin: 20px 0;
+            padding: 10px;
+        }
+        .method {
+            font-weight: bold;
+        }
+        .url {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        pre {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+        .description {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>API Documentation</h1>
+
+        <div class="api-endpoint">
+            <h2>/process_chehra_frame - POST</h2>
+            <p class="description">Processes the provided image frame for facial emotion recognition using the Chehra model.</p>
+            <p><span class="method">Method:</span> POST</p>
+            <p><span class="url">URL:</span> /process_chehra_frame</p>
+            <p>Request Body (form-data):</p>
+            <pre>{
+    "frame": "[binary image data]"
+}</pre>
+            <p>Response:</p>
+            <pre>{
+    "encoded_image": "[binary image data]"
+}</pre>
+        </div>
+
+        <div class="api-endpoint">
+            <h2>/get_chehra_predictions - GET</h2>
+            <p class="description">Retrieves the latest predictions made by the Chehra model.</p>
+            <p><span class="method">Method:</span> GET</p>
+            <p><span class="url">URL:</span> /get_chehra_predictions</p>
+            <p>Response:</p>
+            <pre>{
+    "predictions": [array of predictions]
+}</pre>
+        </div>
+
+        <div class="api-endpoint">
+            <h2>/process_CNN_frame - POST</h2>
+            <p class="description">Processes the provided image frame for facial emotion recognition using the CNN model.</p>
+            <p><span class="method">Method:</span> POST</p>
+            <p><span class="url">URL:</span> /process_CNN_frame</p>
+            <p>Request Body (form-data):</p>
+            <pre>{
+    "frame": "[binary image data]"
+}</pre>
+            <p>Response:</p>
+            <pre>{
+    "encoded_image": "[binary image data]"
+}</pre>
+        </div>
+
+        <div class="api-endpoint">
+            <h2>/get_cnn_predictions - GET</h2>
+            <p class="description">Retrieves the latest predictions made by the CNN model.</p>
+            <p><span class="method">Method:</span> GET</p>
+            <p><span class="url">URL:</span> /get_cnn_predictions</p>
+            <p>Response:</p>
+            <pre>{
+    "predictions": [array of predictions]
+}</pre>
+        </div>
+
+        <div class="api-endpoint">
+            <h2>/process_yollo_frame - POST</h2>
+            <p class="description">Processes the provided image frame for facial emotion recognition using the YOLO model.</p>
+            <p><span class="method">Method:</span> POST</p>
+            <p><span class="url">URL:</span> /process_yollo_frame</p>
+            <p>Request Body (form-data):</p>
+            <pre>{
+    "frame": "[binary image data]"
+}</pre>
+            <p>Response:</p>
+            <pre>{
+    "encoded_image": "[binary image data]"
+}</pre>
+        </div>
+
+        <div class="api-endpoint">
+            <h2>/get_yollo_predictions - GET</h2>
+            <p class="description">Retrieves the latest predictions made by the YOLO model.</p>
+            <p><span class="method">Method:</span> GET</p>
+            <p><span class="url">URL:</span> /get_yollo_predictions</p>
+            <p>Response:</p>
+            <pre>{
+    "predictions": [array of predictions]
+}</pre>
+        </div>
+
+        <div class="api-endpoint">
+            <h2>/create_file/{session_id}/{model_name} - POST</h2>
+            <p class="description">Creates a file with provided content, associating it with a given session ID and model name.</p>
+            <p><span class="method">Method:</span> POST</p>
+            <p><span class="url">URL:</span> /create_file/&lt;session_id&gt;/&lt;model_name&gt;</p>
+            <p>URL Parameters:</p>
+            <pre>
+        session_id: Unique identifier for the session.
+        model_name: Name of the model.
+        </pre>
+            <p>Request Body (JSON):</p>
+            <pre>{
+            "content": "Your content here..."
+        }</pre>
+            <p>Response:</p>
+            <pre>{
+            "result": "File [file_name] created in folder [folder_name]"
+        }</pre>
+        </div>
+        
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>About Us - Interactive Visualization Project</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&family=Work+Sans:ital,wght@0,100;0,400;0,500;1,100&display=swap" rel="stylesheet">
+
+
+
+   </head>
+   <body id="about-us-body">
+      <!-- Existing Navbar here -->
+      <nav class="navbar">
+         <div class="navbar-brand">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="navbar-logo">
+            <span class="navbar-title">Interactive Visualization Project - Facial Emotion Recognition</span>
+         </div>
+         <div class="navbar-links">
+            <a href="./" class="nav-link">Home</a>
+            <a href="." class="nav-link">About Us</a>
+            <!-- <a href="#" class="nav-link">Contact</a> -->
+         </div>
+      </nav>
+      <!-- About Us Section -->
+      <section class="about-us">
+         <h1>About the Project</h1>
+         <p>The Interactive Visualization Project represents a groundbreaking endeavor in the realm of Artificial Intelligence (AI), particularly in the field of facial emotion recognition. This ambitious project leverages sophisticated AI models, including Convolutional Neural Networks (CNN), Chehra, and Deep Neural Networks, to accurately interpret and analyze human emotions through facial expressions.</p>
+         <p>At the heart of this initiative is the goal to create a seamless interaction between humans and technology by enhancing machines' ability to understand and respond to human emotions empathetically. This objective is particularly crucial in an era where technology, especially AI, is becoming increasingly integrated into our daily lives. By enabling machines to recognize and react to human emotions, the project seeks to make technological interactions more intuitive, personal, and efficient.</p>
+         <p>The project's approach involves analyzing facial expressions in real-time, translating subtle human emotions into data that machines can process. This technology has a wide array of potential applications, from enhancing customer service experiences in various industries to supporting mental health professionals in diagnosing and treating patients. It could also play a significant role in the development of empathetic robots and AI assistants, leading to more natural human-computer interactions.</p>
+         <p>Moreover, the project doesn't just focus on the technological aspects; it also emphasizes the ethical considerations of emotion recognition technology. It aims to ensure privacy, consent, and fairness in the use of such sensitive data. By doing so, the Interactive Visualization Project is setting a precedent for responsible and beneficial AI development, aligning technological advancements with human values and ethics. This project is not just a leap forward in AI but also a step towards a future where technology understands and respects human emotions as much as we do.</p>
+         <h2>Our Team</h2>
+
+         <div class="team-member">
+            <img src="{{ url_for('static', filename='images/Tobias-Günther.jpg') }}" alt="Prof. Dr.-Ing. Tobias Günther">
+            <h3>Prof. Dr.-Ing. Tobias Günther</h3>
+            <p>Department of Computer Science, FAU</p>
+            <p>Email: <a href="mailto:tobias.guenther@fau.de">tobias.guenther@fau.de</a></p>
+         </div>
+
+         
+         <div class="team-members">
+            <!-- Team Members -->
+
+            <div class="team-member">
+               <img src="{{ url_for('static', filename='images/ali.jpg') }}" alt="Ali Ullah">
+               <h3>Ali Ullah</h3>
+               <p>Master of Science - AI, FAU</p>
+               <p>Matriculation Number: 23269239</p>
+               <p>Email: <a href="mailto:ali.ullah@fau.de">ali.ullah@fau.de</a></p>
+            </div>
+            <div class="team-member">
+               <img src="{{ url_for('static', filename='images/fida.jpg') }}" alt="Fida Hussain">
+               <h3>Fida Hussain</h3>
+               <p>Master of Science - AI, FAU</p>
+               <p>Matriculation Number: 23209327</p>
+               <p>Email: <a href="mailto:fida.hussain@fau.de">fida.hussain@fau.de</a></p>
+            </div>
+            <div class="team-member">
+               <img src="{{ url_for('static', filename='images/hamza.png') }}" alt="Hamza Naeem">
+               <h3>Hamza Naeem</h3>
+               <p>Master of Science - AI, FAU</p>
+               <p>Matriculation Number: 23173252</p>
+               <p>Email: <a href="mailto:hamza.naeem@fau.de">hamza.naeem@fau.de</a></p>
+            </div>
+            <div class="team-member">
+               <img src="{{ url_for('static', filename='images/gm.jpg') }}" alt="GM">
+               <h3>Ghulam Mustafa</h3>
+               <p>Master of Science - AI, FAU</p>
+               <p>Matriculation Number: 23186746</p>
+               <p>Email: <a href="mailto:ghulam.mustafa@fau.de">ghulam.mustafa@fau.de</a></p>
+            </div>
+           
+         </div>
+
+         <div class="fau" style="height: 6rem;">
+            <img src="{{ url_for('static', filename='images/fau.png') }}" alt="Logo" class="navbar-logo">
+         </div>
+
+      </section>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+   </body>
+</html>

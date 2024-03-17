@@ -1,0 +1,368 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    /* font-family: Arial, sans-serif; */
+    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Work Sans', sans-serif; */
+}
+
+  /* *******************************************  */
+
+.button-setup{
+    display: flex;
+    /* margin: 10px; */
+    padding:5px;
+    background-color: #ffffff;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: start;
+    border-bottom: #333;
+    /* justify-content: center; */
+    /* height: 110vh; */
+}  
+
+/* h1 {
+    color: #ffa500; 
+    font-size: 30px;
+    justify-items: center;
+    align-items: center;
+  } */
+
+
+  .button {
+    padding: 20px;
+    border-radius: 22px;
+    color: white;
+    border-radius: 50px;
+    background-color: #ffa500;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    /* background-color: dodgerblue; */
+    background-color: #bb7b05;
+  }
+
+
+  
+  #modelSetup {
+    display: flex !important;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    height: 80px; /* Example height, adjust as needed */
+    text-align: center; /* Ensure that the text within is centered as well */
+}
+
+    /* To ensure the select box and label are inline and centered */
+    #modelSetup label, #modelSetup select {
+        margin: 0 5px; /* Add some spacing around the label and select box */
+    }
+
+
+    
+/*************************************************/
+
+#modelSetup label {
+    margin-right: 10px; /* Spacing to the right of the label */
+    font-size: 1.5rem; /* Larger font size for the label */
+}
+
+#modelSetup select {
+    padding: 10px 15px; /* Padding inside the select box */
+    margin: 0 5px; /* Spacing around the select box */
+    font-size: 1.1rem; /* Font size for select options */
+    border: 1px solid #ccc; /* A subtle border around the select */
+    border-radius: 5px; /* Rounded corners for the select */
+    -webkit-appearance: none; /* Remove default styling specific to WebKit browsers */
+    -moz-appearance: none; /* Remove default styling specific to Mozilla browsers */
+    appearance: none; /* Standard way to remove default arrow */
+    background-color: #f8f8f8; /* A light background for the select */
+    cursor: pointer; /* Cursor to indicate it's selectable */
+    outline: none; /* Remove the default focus outline */
+    width: 200px; /* Set a specific width */
+}
+
+/* Style focus state of select for better accessibility */
+#modelSetup select:focus {
+    /* border-color: #0066ff;  */
+}
+
+  /* *******************************************  */
+
+  .container {
+    margin-left: 100px;
+    display: grid;
+    grid-template-columns: 1fr 4fr 3fr; /* Two columns with equal width */
+    gap: 10px; /* Add space between video and processed frames */
+    background-color: #fff;
+    padding: 5px;
+    /* margin-top: 50px; */
+    border-radius: 80px;
+    box-shadow: 4 2px 4px rgba(0, 0, 0, 0.1);
+    /* width: 1500px; */
+    /* height: 200px; */
+  }
+
+
+  #cameraStream {
+    display: none;
+    margin-left: -60px;
+    width: 200px !important;
+    border-radius: 30px;
+  }
+
+  #processedStream {
+    display: none;
+    width: 800px;
+    border-radius: 30px;
+  }
+
+  /* Nav Bar */
+
+.navbar {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    height: 60px; /* Adjust size as needed */
+    margin-right: 10px;
+}
+
+.navbar-title {
+    font-size: 1.8em;
+    color: #ffa500; /* Orange color */
+    
+}
+
+.navbar-links .nav-link {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.navbar-links .nav-link:hover {
+    color: #ddd;
+}
+
+/* **********************Toast*********************** */
+#toastContainer {
+    position: fixed;
+    width: 100%;
+    top: 20px;
+    /* right: 20px; */
+    z-index: 1000;
+    text-align: center;
+}
+
+.toast {
+    width: fit-content;
+    background-color: #e22424;
+    color: #fff;
+    padding: 10px 20px;
+    margin-right:50%;
+    /* margin-bottom: 10px; */
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s;
+    position: relative;
+    top: 0;
+    margin:0 auto;
+    display: block;
+}
+
+/* ************************************************** */
+
+/* graphs and stats */
+
+#emotion_info {
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    /* margin: 5px; */
+}
+
+#emotion_info h2 {
+    color: #ffa500; /* Example color for titles */
+    /* margin-bottom: 10px; */
+}
+#emotion_info2 h2{
+    color: #ffa500; /* Example color for titles */
+    /* margin-bottom: 10px; */
+}
+
+#emotion_info ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two columns */
+    gap: 10px; /* Add space between list items */
+}
+
+#emotion_info li {
+    background-color: #f2f2f2; /* Light grey background for list items */
+    padding: 1px;
+    /* margin-bottom: 5px; */
+    border-radius: 5px; /* Rounded corners for list items */
+}
+
+/***************************************/
+#placeholder-container {
+    width: 100%; /* Full width of the viewport */
+    height: 79vh; /* Full height of the viewport */
+    background-image: url('../images/main_placeholder.png'); /* Path to your image */
+    background-size: 100% 100%; /* Stretch the image to cover the full area of the div */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+
+
+/********************* About Us **************************/
+/* Add to your existing CSS */
+.about-us {
+    text-align: left;
+    margin: 20px;
+}
+
+.fau{
+    margin-top: 6rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#about-us-body{
+    width: 100%; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    background: bottom;
+    
+
+}
+
+.team-members, .professor {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.team-member, .professor {
+    margin: 15px;
+    text-align: center;
+}
+
+.team-member img, .professor img {
+    width: 150px; /* Adjust as needed */
+    height: 150px; /* Adjust as needed */
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.team-member h3, .professor h3 {
+    margin: 5px 0;
+}
+
+.team-member p, .professor p {
+    margin: 4px 0;
+}
+
+ 
+/* ********************* Switch ************************** */
+
+.switch-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: end;
+    align-items: center; /* Vertically center the content */
+    height: 80px; /* Example height, adjust as needed */
+    text-align: center; /* Ensure that the text within is centered as well */
+    margin-right: 20px;
+
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #ffa500;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #ffa500;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.switch-label {
+    margin-left: 10px;
+    font-size: 1.5rem; /* Larger font size for the label */
+}
+
+/*  ******************************************** */
