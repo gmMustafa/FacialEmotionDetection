@@ -158,3 +158,13 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+
+# Custom Entries
+arc/facial_landmarks_with_distances_temp.csv
+arc/shape_predictor_68_face_landmarks.dat
+model/80perc/
+Scripts/
+Include/
+pyvenv.cfg
+sessions-data/
