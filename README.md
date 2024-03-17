@@ -77,6 +77,9 @@ Our heartfelt thanks go to the facial emotion recognition community for their re
 
 Future enhancements will focus on integrating more advanced neural networks, refining user interfaces, and expanding the application's reach into various sectors, guided by ethical considerations and a commitment to innovation.
 
+## Disclaimer
+This project is associated with the "Interactive Visualization Project" under the "AI Systems and Applications" pillar, part of the Master of Science in Artificial Intelligence degree at Friedrich-Alexander-Universität Erlangen-Nürnberg.
+
 For a detailed exploration of the project's methodology, evaluation, and insights, refer to the presentation slides at https://tinyurl.com/4ppxptxp.
 
 ---
