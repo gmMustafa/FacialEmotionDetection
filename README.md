@@ -22,7 +22,7 @@ The project aims to bridge the gap between human emotions and technology, provid
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/facial_emotion_detection.git
+   git clone https://github.com/gmMustafa/facial_emotion_detection/
    ```
 2. **Download the architecture and model zip file** from the following URL, and extract it into the root folder of the cloned repository:
    ```plaintext
