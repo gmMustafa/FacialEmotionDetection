@@ -84,7 +84,7 @@ Remember to deactivate your virtual environment when you're finished working on 
 ### UI Overview
 ![UI Overview](https://github.com/gmMustafa/facial_emotion_detection/assets/26876754/cfaa212d-6665-4ca7-a932-bebb2139eecf)
 
-![Emotion Detection Results](https://github.com/gmMustafa/facial_emotion_detection/assets/26876754/08304192-b494-49ec-9700-188c2e52880e)
+![UI Overview - II](https://github.com/gmMustafa/facial_emotion_detection/assets/26876754/5f601fc8-7b71-4d75-af79-d81bdccb75d9)
 
 ## Contributing
 
