@@ -79,12 +79,24 @@ Remember to deactivate your virtual environment when you're finished working on 
 - **OpenCV:** For video stream processing and face detection.
 - **Dlib:** Facial landmark detection in the Chehra model.
 
+
+
+## Contributors
+
+A huge thank you to everyone who has contributed to this project! Your contributions help make this project better.
+
+- [@Ali623](https://github.com/Ali623) - **Aliullah**
+- [@FidaHussain87](https://github.com/FidaHussain87) - **Fida Hussain**
+- [@hamzanaeem1999](https://github.com/hamzanaeem1999) - **Hamza Naeem**
+
+
 ## Screenshots
 
 ### UI Overview
 ![UI Overview](https://github.com/gmMustafa/facial_emotion_detection/assets/26876754/cfaa212d-6665-4ca7-a932-bebb2139eecf)
 
 ![UI Overview - II](https://github.com/gmMustafa/facial_emotion_detection/assets/26876754/5f601fc8-7b71-4d75-af79-d81bdccb75d9)
+
 
 ## Contributing
 
